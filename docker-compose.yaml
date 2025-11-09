@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  php:
+    build:
+      context: dockerfiles
+      dockerfile: php.Dockerfile
+    volumes:
+      - ./:/var/www/html
+    command: tail -f /dev/null # command to keep container alive
+  composer:
+    build:
+      context: dockerfiles
+      dockerfile: composer.Dockerfile
+    volumes:
+      - ./:/var/www/html
+    depends_on:
+      - php
